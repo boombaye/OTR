@@ -17,77 +17,45 @@ router.post('/records', async (ctx,next) =>{
     let boolColor;
     let boolGender;
     let boolBirthdate;
+    let delimeter;
+    let delimeterCount;
     if(body.match(/[|]/g)){
-        inputData = parseInputdata(',',body.match(/[|]/g).length,body);
-        boolLastName = booleans.isName(inputData[0]);
-        console.log('boolLastName is '+boolLastName);
-        boolFirstName = booleans.isName(inputData[1]);
-        console.log('boolFirstName is '+boolFirstName);
-        boolGender = booleans.isGender(inputData[2]);
-        console.log('boolGender is '+boolGender);
-        boolColor = booleans.isName(inputData[3]);
-        console.log('boolColor is '+boolColor);
-        boolBirthdate = booleans.isBirthDate(inputData[4]);
-        console.log('boolBirthdate is '+boolBirthdate);
-        if(!(boolLastName && boolFirstName && boolGender && boolColor && boolBirthdate)){
-            let err = new Error('Failed Boolean checks');
-            err.message = "Error! the boolean checks failed";
-            console.log(err.message);
-            throw err;
-        }
-        else{
-            createRecords();
-        }
+        delimeter = '|';
+        delimeterCount = body.match(/[|]/g).length;
     }
     else if(body.match(/[,]/g)){
-        inputData = parseInputdata(',',body.match(/[,]/g).length,body);
-        boolLastName = booleans.isName(inputData[0]);
-        console.log('boolLastName is '+boolLastName);
-        boolFirstName = booleans.isName(inputData[1]);
-        console.log('boolFirstName is '+boolFirstName);
-        boolGender = booleans.isGender(inputData[2]);
-        console.log('boolGender is '+boolGender);
-        boolColor = booleans.isName(inputData[3]);
-        console.log('boolColor is '+boolColor);
-        boolBirthdate = booleans.isBirthDate(inputData[4]);
-        console.log('boolBirthdate is '+boolBirthdate);
-        if(!(boolLastName && boolFirstName && boolGender && boolColor && boolBirthdate)){
-            let err = new Error('Failed Boolean checks');
-            err.message = "Error! the boolean checks failed";
-            console.log(err.message);
-            throw err;
-        }
-        else{
-            createRecords();
-        }
+        delimeter = ',';
+        delimeterCount = body.match(/[,]/g).length;
     }
     else if(body.match(/[" "]/g)){
-        inputData = parseInputdata(" ",body.match(/[" "]/g).length,body);
-        boolLastName = booleans.isName(inputData[0]);
-        console.log('boolLastName is '+boolLastName);
-        boolFirstName = booleans.isName(inputData[1]);
-        console.log('boolFirstName is '+boolFirstName);
-        boolGender = booleans.isGender(inputData[2]);
-        console.log('boolGender is '+boolGender);
-        boolColor = booleans.isName(inputData[3]);
-        console.log('boolColor is '+boolColor);
-        boolBirthdate = booleans.isBirthDate(inputData[4]);
-        console.log('boolBirthdate is '+boolBirthdate);
-        if(!(boolLastName && boolFirstName && boolGender && boolColor && boolBirthdate)){
-            let err = new Error('Failed Boolean checks');
-            err.message = "Error! the boolean checks failed";
-            console.log(err.message);
-            throw err;
-        }
-        else{
-            createRecords();
-        }
+        delimeter = " ";
+        delimeterCount = body.match(/[" "]/g).length;
     }
     else{
         let err = new Error('Missing fields');
         err.message = "Error! none of the required delimeters are present";
         console.log(err.message);
         throw err;
+    }
+    inputData = parseInputdata(delimeter,delimeterCount,body);
+    boolLastName = booleans.isName(inputData[0]);
+    console.log('boolLastName is '+boolLastName);
+    boolFirstName = booleans.isName(inputData[1]);
+    console.log('boolFirstName is '+boolFirstName);
+    boolGender = booleans.isGender(inputData[2]);
+    console.log('boolGender is '+boolGender);
+    boolColor = booleans.isName(inputData[3]);
+    console.log('boolColor is '+boolColor);
+    boolBirthdate = booleans.isBirthDate(inputData[4]);
+    console.log('boolBirthdate is '+boolBirthdate);
+    if(!(boolLastName && boolFirstName && boolGender && boolColor && boolBirthdate)){
+        let err = new Error('Failed Boolean checks');
+        err.message = "Error! the boolean checks failed";
+        console.log(err.message);
+        throw err;
+    }
+    else{
+        createRecords();
     }
       function createRecords() {
         records.push({

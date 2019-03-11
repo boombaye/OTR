@@ -4,6 +4,8 @@ const parseInputData = function(delimeter,delimeterLength,rawData){
         let err = new Error('Missing fields');
         err.status = 404;
         err.message = "Error! There is a missing field at parseInputData";
+        console.log(inputData.length);
+        console.log(delimeterLength);
         console.log(err.message);
         throw err;
     }
