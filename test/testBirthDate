@@ -1,0 +1,56 @@
+
+
+const assert = require ('chai').assert;
+
+const BooleanFunctions = require('../routes/BooleanFunctionsInterface');
+
+describe('BooleanFunctions true test cases', function(){
+    it('Boolean function isName() should return true', function(){
+        assert.equal(BooleanFunctions.isName('Mitchell'),true)
+    });
+    it('Boolean function isGender() should return true for test Male', function(){
+        assert.equal(BooleanFunctions.isGender('Male'),true)
+    });
+    it('Boolean function isGender() should return true for test Male', function(){
+        assert.equal(BooleanFunctions.isGender('male'),true)
+    });
+    it('Boolean function isGender() should return true for test Female',function(){
+        assert.equal(BooleanFunctions.isGender('Female'),true)
+    });
+    it('Boolean function isGender() should return true for test Male', function(){
+        assert.equal(BooleanFunctions.isGender('female'),true)
+    });
+    it('Boolean function isBirthdate() should return true for testCase', function(){
+        assert.equal(BooleanFunctions.isBirthDate('08/11/1900'),true)
+    });
+    it('Boolean function isBirthdate() should return true for testCase', function(){
+        assert.equal(BooleanFunctions.isBirthDate('1/11/2015'),true)
+    });
+});
+
+describe('BooleanFunctions false test cases', function(){
+    it('Boolean function isName() should return false', function(){
+        assert.equal(BooleanFunctions.isName('Mitc////bell'),false)
+    });
+    it('Boolean function isGender() should return false', function(){
+        assert.equal(BooleanFunctions.isGender('Ma8888le'),false)
+    });
+    it('Boolean function isGender() should return false', function(){
+        assert.equal(BooleanFunctions.isGender('mle'),false)
+    });
+    it('Boolean function isGender() should return false',function(){
+        assert.equal(BooleanFunctions.isGender('Fem-adale'),false)
+    });
+    it('Boolean function isGender() should return false', function(){
+        assert.equal(BooleanFunctions.isGender('f0male'),false)
+    });
+    it('Boolean function isBirthdate() should return false', function(){
+        assert.equal(BooleanFunctions.isBirthDate('08/4444444411/1900'),false)
+    });
+    it('Boolean function isBirthdate() should return false', function(){
+        assert.equal(BooleanFunctions.isBirthDate('1000/1100000/200000015'),false)
+    });
+    it('Boolean function isBirthdate() should return false', function(){
+        assert.equal(BooleanFunctions.isBirthDate('13/32/2020'),false)
+    });
+});
